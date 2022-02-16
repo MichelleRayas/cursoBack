@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.productos;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import services.productoService;
 
 @CrossOrigin(origins = "http://localhost:8090")
@@ -25,11 +26,13 @@ public class productosController {
 	@Autowired
 	public productosController(productoService Dem) {}
 	
+	@ApiOperation(value="GET", notes= "Obtiene todos los productos")
 	@GetMapping("/productos")
 	public List<productos> getAllProductos() {
 		return categService.getAllproductos();
 	}
 	
+	@ApiOperation(value="POST", notes= "Inserta productos")
 	@PostMapping("/productos")
 	public productos createProducto(@RequestBody productos producto) {
 		return categService.create(producto);
